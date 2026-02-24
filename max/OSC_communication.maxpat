@@ -998,13 +998,13 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-270",
-					"linecount" : 2,
+					"linecount" : 3,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 2615.0, 414.0, 50.0, 35.0 ],
-					"text" : "tempo=122.00"
+					"patching_rect" : [ 2615.0, 414.0, 50.0, 49.0 ],
+					"text" : "param:rho=0.95"
 				}
 
 			}
@@ -1151,11 +1151,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-284",
+					"linecount" : 2,
 					"maxclass" : "newobj",
-					"numinlets" : 8,
-					"numoutlets" : 8,
-					"outlettype" : [ "", "", "", "", "", "", "", "" ],
-					"patching_rect" : [ 2585.0, 478.0, 269.0, 22.0 ],
+					"numinlets" : 13,
+					"numoutlets" : 13,
+					"outlettype" : [ "", "", "", "", "", "", "", "", "", "", "", "", "" ],
+					"patching_rect" : [ 2585.0, 478.0, 269.0, 35.0 ],
 					"text" : "route /grid /rgrid /seq /seq_low /seq_mid /seq_high /pdf /rpdf /pdf_low /pdf_high /stat /ack"
 				}
 
@@ -1175,11 +1176,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-246",
+					"linecount" : 2,
 					"maxclass" : "newobj",
-					"numinlets" : 8,
-					"numoutlets" : 8,
-					"outlettype" : [ "", "", "", "", "", "", "", "" ],
-					"patching_rect" : [ 822.697184562683105, 309.090906143188477, 269.0, 22.0 ],
+					"numinlets" : 13,
+					"numoutlets" : 13,
+					"outlettype" : [ "", "", "", "", "", "", "", "", "", "", "", "", "" ],
+					"patching_rect" : [ 822.697184562683105, 309.090906143188477, 269.0, 35.0 ],
 					"text" : "route /grid /rgrid /seq /seq_low /seq_mid /seq_high /pdf /rpdf /pdf_low /pdf_high /stat /ack"
 				}
 
@@ -2387,11 +2389,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-35",
+					"linecount" : 4,
 					"maxclass" : "newobj",
-					"numinlets" : 6,
-					"numoutlets" : 6,
-					"outlettype" : [ "", "", "", "", "", "" ],
-					"patching_rect" : [ 696.501255035400391, 427.026998519897461, 163.0, 22.0 ],
+					"numinlets" : 13,
+					"numoutlets" : 13,
+					"outlettype" : [ "", "", "", "", "", "", "", "", "", "", "", "", "" ],
+					"patching_rect" : [ 696.501255035400391, 427.026998519897461, 163.0, 62.0 ],
 					"text" : "route /grid /rgrid /seq /seq_low /seq_mid /seq_high /pdf /rpdf /pdf_low /pdf_high /stat /ack"
 				}
 
@@ -2860,13 +2863,13 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-101",
-					"linecount" : 2,
+					"linecount" : 3,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 935.724209785461426, 486.486454010009766, 50.0, 35.0 ],
-					"text" : "tempo=122.00"
+					"patching_rect" : [ 935.724209785461426, 486.486454010009766, 50.0, 49.0 ],
+					"text" : "param:rho=0.95"
 				}
 
 			}
@@ -3121,8 +3124,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "FullPacket" ],
-					"patching_rect" : [ 1802.0, 1182.0, 73.0, 22.0 ],
-					"text" : "o.pack /param/rho"
+					"patching_rect" : [ 1802.0, 1182.0, 105.0, 22.0 ],
+					"text" : "print disabled_param_rho"
 				}
 
 			}
@@ -3133,8 +3136,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "FullPacket" ],
-					"patching_rect" : [ 1912.0, 1318.0, 91.0, 22.0 ],
-					"text" : "o.pack /param/harmony_strength"
+					"patching_rect" : [ 1912.0, 1318.0, 185.0, 22.0 ],
+					"text" : "print disabled_param_harmony"
 				}
 
 			}
@@ -3145,8 +3148,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "FullPacket" ],
-					"patching_rect" : [ 1752.0, 1040.0, 84.0, 22.0 ],
-					"text" : "o.pack /param/sigma_pitch"
+					"patching_rect" : [ 1752.0, 1040.0, 152.0, 22.0 ],
+					"text" : "print disabled_param_sigma_pitch"
 				}
 
 			}
@@ -3212,11 +3215,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-14",
+					"linecount" : 4,
 					"maxclass" : "newobj",
-					"numinlets" : 6,
-					"numoutlets" : 6,
-					"outlettype" : [ "", "", "", "", "", "" ],
-					"patching_rect" : [ 908.697184562683105, 548.648612022399902, 163.0, 22.0 ],
+					"numinlets" : 13,
+					"numoutlets" : 13,
+					"outlettype" : [ "", "", "", "", "", "", "", "", "", "", "", "", "" ],
+					"patching_rect" : [ 908.697184562683105, 548.648612022399902, 163.0, 62.0 ],
 					"text" : "route /grid /rgrid /seq /seq_low /seq_mid /seq_high /pdf /rpdf /pdf_low /pdf_high /stat /ack"
 				}
 
@@ -3555,7 +3559,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-64", 0 ],
-					"midpoints" : [ 1004.597184562683083, 689.700541734695435, 1069.548525810241699, 689.700541734695435 ],
+					"midpoints" : [ 954.197184562683105, 689.700541734695435, 1069.548525810241699, 689.700541734695435 ],
 					"source" : [ "obj-14", 3 ]
 				}
 
@@ -4161,28 +4165,28 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-259", 0 ],
-					"source" : [ "obj-284", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-282", 0 ],
-					"source" : [ "obj-284", 5 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-296", 0 ],
 					"source" : [ "obj-284", 2 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-322", 0 ],
+					"destination" : [ "obj-282", 0 ],
+					"source" : [ "obj-284", 10 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-296", 0 ],
 					"source" : [ "obj-284", 3 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-322", 0 ],
+					"source" : [ "obj-284", 5 ]
 				}
 
 			}
@@ -5124,7 +5128,7 @@
 
 			}
  ],
-		"originid" : "pat-40",
+		"originid" : "pat-14",
 		"dependency_cache" : [ 			{
 				"name" : "o.pack.mxo",
 				"type" : "iLaX"
