@@ -1,8 +1,8 @@
-# OSC Communication Project (Max + Python)
+# エントロピー音楽生成システム
 
-此專案提供 Max + Python 的即時 OSC 生成系統，現在已改為「全參數獨立控制」（不使用 entropy 總控）。
+本プロジェクトは、Max + Python によるリアルタイム OSC 生成システムです。現在は「全パラメータ独立制御」方式（entropy の単一総合制御は不使用）で動作します。
 
-## Project Structure
+## プロジェクト構成
 
 ```text
 osc-communication-project/
@@ -19,21 +19,21 @@ osc-communication-project/
    └─ OSC_param_control.maxpat
 ```
 
-## Core Roles
+## 主要コンポーネント
 
 - `max/OSC_communication.maxpat`
-  - 主播放/視覺化 patch（grid、pdf、stat、audio）
+  - メイン再生・可視化パッチ（grid、pdf、stat、audio）
 - `max/OSC_param_control.maxpat`
-  - ODOT 參數控制面板（`o.pack /param/*`、`o.pack /pull`）
+  - ODOT パラメータ制御パネル（`o.pack /param/*`、`o.pack /pull`）
 - `src/entropy_lattice_server.py`
-  - Python OSC 伺服器與三聲部生成引擎
+  - Python OSC サーバーおよび 3 声部生成エンジン
 
-## OSC Ports
+## OSC ポート
 
 - Python -> Max: `127.0.0.1:8000`
 - Max -> Python: `127.0.0.1:8001`
 
-## Main OSC API
+## 主な OSC API
 
 ### Max -> Python
 
@@ -53,7 +53,7 @@ osc-communication-project/
 - `/param/max_events_per_bar <int>`
 - `/param/seed_base <int>`
 
-已移除舊路由：`/entropy`, `/tempo`, `/mode`, `/rho`（舊獨立版）。
+旧ルート `/entropy`, `/tempo`, `/mode`, `/rho`（旧独立版）は削除済みです。
 
 ### Python -> Max
 
@@ -63,15 +63,15 @@ osc-communication-project/
 - `/seq_low <bar + events...>`
 - `/seq_mid <bar + events...>`
 - `/seq_high <bar + events...>`
-- `/seq <bar + events...>`（backward compatibility，等同 mid）
+- `/seq <bar + events...>`（後方互換、`mid` と同等）
 - `/pdf`, `/rpdf`, `/pdf_low`, `/pdf_high`
 - `/stat <H sigma rho>`
 
-每個事件格式：`beat, i, j, freq_hz, dur_beat, vel`
+各イベント形式：`beat, i, j, freq_hz, dur_beat, vel`
 
-## Quick Start
+## クイックスタート
 
-1. 安裝依賴
+1. 依存関係をインストール
 
 ```bash
 cd /Users/kaede/osc-communication-project
@@ -80,33 +80,33 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-2. 啟動 Python server
+2. Python サーバーを起動
 
 ```bash
 python src/entropy_lattice_server.py
 ```
 
-3. 開啟 Max patch
+3. Max パッチを開く
 
-- 播放/視覺化：`max/OSC_communication.maxpat`
-- 參數控制：`max/OSC_param_control.maxpat`
+- 再生・可視化：`max/OSC_communication.maxpat`
+- パラメータ制御：`max/OSC_param_control.maxpat`
 
-4. 在 `OSC_param_control.maxpat` 中：
+4. `OSC_param_control.maxpat` で以下を実行
 
-- 點 `/hello`、`/grid_now` 按鈕
-- 啟動 `qmetro` 觸發 `/pull`
-- 調整各 `o.pack /param/*` 參數
+- `/hello` と `/grid_now` を送信
+- `qmetro` を起動して `/pull` をトリガー
+- 各 `o.pack /param/*` パラメータを調整
 
-## Test
+## テスト
 
 ```bash
 python3 -m unittest tests/test_server_params.py
 ```
 
-## Notes
+## 補足
 
-- `OSC_communication.maxpat` 的 route 已同步擴充為：
+- `OSC_communication.maxpat` の route は以下に拡張済みです：
   `route /grid /rgrid /seq /seq_low /seq_mid /seq_high /pdf /rpdf /pdf_low /pdf_high /stat /ack`
-- `send_pdf=0` 時，Python 不再發送 pdf 類路由。
+- `send_pdf=0` の場合、Python は pdf 系ルートを送信しません。
 
-詳細設計見 `docs/architecture.md`。
+詳細設計は `docs/architecture.md` を参照してください。
