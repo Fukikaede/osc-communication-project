@@ -225,39 +225,27 @@
                     "preset_data": [
                         {
                             "number": 1,
-                            "data": [ 5, "obj-76", "number", "float", 0.0, 5, "obj-72", "number", "float", 80.0, 5, "obj-68", "number", "int", 101, 5, "obj-64", "number", "int", 16, 5, "obj-60", "number", "int", 1, 5, "obj-56", "number", "int", 62, 5, "obj-52", "number", "float", 720.0, 5, "obj-48", "number", "float", 520.0, 5, "obj-44", "number", "float", 0.25, 5, "obj-40", "number", "float", 1.0, 5, "obj-36", "number", "float", 0.019999999552965164, 5, "obj-32", "number", "float", 0.0, 5, "obj-28", "number", "float", 0.25, 5, "obj-24", "number", "float", 0.18000000715255737 ]
+                            "data": [ 5, "obj-24", "number", "float", 0.12, 5, "obj-28", "number", "float", 1.0, 5, "obj-32", "number", "float", 0.0, 5, "obj-36", "number", "float", 0.03, 5, "obj-40", "number", "float", 0.98, 5, "obj-44", "number", "float", 0.35, 5, "obj-48", "number", "float", 380.0, 5, "obj-52", "number", "float", 520.0, 5, "obj-56", "number", "int", 62, 5, "obj-60", "number", "int", 1, 5, "obj-64", "number", "int", 16, 5, "obj-68", "number", "int", 11 ]
                         },
                         {
                             "number": 2,
-                            "data": [ 5, "obj-76", "number", "float", 0.0, 5, "obj-72", "number", "float", 111.0, 5, "obj-68", "number", "int", 202, 5, "obj-64", "number", "int", 16, 5, "obj-60", "number", "int", 1, 5, "obj-56", "number", "int", 72, 5, "obj-52", "number", "float", 560.0, 5, "obj-48", "number", "float", 420.0, 5, "obj-44", "number", "float", 0.44999998807907104, 5, "obj-40", "number", "float", 0.949999988079071, 5, "obj-36", "number", "float", 0.07999999821186066, 5, "obj-32", "number", "float", 0.10000000149011612, 5, "obj-28", "number", "float", 0.44999998807907104, 5, "obj-24", "number", "float", 0.3499999940395355 ]
+                            "data": [ 5, "obj-24", "number", "float", 0.38, 5, "obj-28", "number", "float", 1.0, 5, "obj-32", "number", "float", 0.25, 5, "obj-36", "number", "float", 0.1, 5, "obj-40", "number", "float", 0.95, 5, "obj-44", "number", "float", 0.55, 5, "obj-48", "number", "float", 300.0, 5, "obj-52", "number", "float", 380.0, 5, "obj-56", "number", "int", 84, 5, "obj-60", "number", "int", 1, 5, "obj-64", "number", "int", 16, 5, "obj-68", "number", "int", 77 ]
                         },
                         {
                             "number": 3,
-                            "data": [ 5, "obj-24", "number", "float", 0.7, 5, "obj-28", "number", "float", 0.8, 5, "obj-32", "number", "float", -0.15, 5, "obj-36", "number", "float", 0.18, 5, "obj-40", "number", "float", 0.8, 5, "obj-44", "number", "float", 0.75, 5, "obj-48", "number", "float", 320.0, 5, "obj-52", "number", "float", 420.0, 5, "obj-56", "number", "int", 84, 5, "obj-60", "number", "int", 1, 5, "obj-64", "number", "int", 16, 5, "obj-68", "number", "int", 303, 5, "obj-72", "number", "float", 104.0, 5, "obj-76", "number", "float", 0.1 ]
+                            "data": [ 5, "obj-24", "number", "float", 1.85, 5, "obj-28", "number", "float", 1.0, 5, "obj-32", "number", "float", -0.72, 5, "obj-36", "number", "float", 0.52, 5, "obj-40", "number", "float", 0.12, 5, "obj-44", "number", "float", 2.6, 5, "obj-48", "number", "float", 70.0, 5, "obj-52", "number", "float", 90.0, 5, "obj-56", "number", "int", 112, 5, "obj-60", "number", "int", 1, 5, "obj-64", "number", "int", 16, 5, "obj-68", "number", "int", 303 ]
                         },
                         {
                             "number": 4,
-                            "data": [ 5, "obj-76", "number", "float", 0.25, 5, "obj-72", "number", "float", 135.0, 5, "obj-68", "number", "int", 404, 5, "obj-64", "number", "int", 16, 5, "obj-60", "number", "int", 1, 5, "obj-56", "number", "int", 94, 5, "obj-52", "number", "float", 300.0, 5, "obj-48", "number", "float", 240.0, 5, "obj-44", "number", "float", 1.149999976158142, 5, "obj-40", "number", "float", 0.6000000238418579, 5, "obj-36", "number", "float", 0.3199999928474426, 5, "obj-32", "number", "float", 0.25, 5, "obj-28", "number", "float", 1.2000000476837158, 5, "obj-24", "number", "float", 1.149999976158142 ]
+                            "data": [ 5, "obj-24", "number", "float", 3.6, 5, "obj-28", "number", "float", 1.0, 5, "obj-32", "number", "float", 0.9, 5, "obj-36", "number", "float", 0.9, 5, "obj-40", "number", "float", 0.0, 5, "obj-44", "number", "float", 3.8, 5, "obj-48", "number", "float", 0.0, 5, "obj-52", "number", "float", 0.0, 5, "obj-56", "number", "int", 120, 5, "obj-60", "number", "int", 0, 5, "obj-64", "number", "int", 16, 5, "obj-68", "number", "int", 999 ]
                         },
                         {
                             "number": 5,
-                            "data": [ 5, "obj-76", "number", "float", 0.44999998807907104, 5, "obj-72", "number", "float", 148.0, 5, "obj-68", "number", "int", 505, 5, "obj-64", "number", "int", 16, 5, "obj-60", "number", "int", 1, 5, "obj-56", "number", "int", 104, 5, "obj-52", "number", "float", 200.0, 5, "obj-48", "number", "float", 160.0, 5, "obj-44", "number", "float", 1.7999999523162842, 5, "obj-40", "number", "float", 0.3799999952316284, 5, "obj-36", "number", "float", 0.47999998927116394, 5, "obj-32", "number", "float", -0.44999998807907104, 5, "obj-28", "number", "float", 1.75, 5, "obj-24", "number", "float", 1.75 ]
-                        },
-                        {
-                            "number": 6,
-                            "data": [ 5, "obj-76", "number", "float", 0.6499999761581421, 5, "obj-72", "number", "float", 170.0, 5, "obj-68", "number", "int", 606, 5, "obj-64", "number", "int", 16, 5, "obj-60", "number", "int", 1, 5, "obj-56", "number", "int", 112, 5, "obj-52", "number", "float", 110.0, 5, "obj-48", "number", "float", 80.0, 5, "obj-44", "number", "float", 2.4000000953674316, 5, "obj-40", "number", "float", 0.2199999988079071, 5, "obj-36", "number", "float", 0.6399999856948853, 5, "obj-32", "number", "float", 0.6499999761581421, 5, "obj-28", "number", "float", 2.3499999046325684, 5, "obj-24", "number", "float", 2.3499999046325684 ]
-                        },
-                        {
-                            "number": 7,
-                            "data": [ 5, "obj-76", "number", "float", 0.8199999928474426, 5, "obj-72", "number", "float", 195.0, 5, "obj-68", "number", "int", 707, 5, "obj-64", "number", "int", 16, 5, "obj-60", "number", "int", 1, 5, "obj-56", "number", "int", 118, 5, "obj-52", "number", "float", 40.0, 5, "obj-48", "number", "float", 20.0, 5, "obj-44", "number", "float", 3.0999999046325684, 5, "obj-40", "number", "float", 0.10000000149011612, 5, "obj-36", "number", "float", 0.7799999713897705, 5, "obj-32", "number", "float", -0.800000011920929, 5, "obj-28", "number", "float", 3.0999999046325684, 5, "obj-24", "number", "float", 3.0999999046325684 ]
-                        },
-                        {
-                            "number": 8,
-                            "data": [ 5, "obj-76", "number", "float", 1.0, 5, "obj-72", "number", "float", 252.0, 5, "obj-68", "number", "int", 808, 5, "obj-64", "number", "int", 16, 5, "obj-60", "number", "int", 1, 5, "obj-56", "number", "int", 122, 5, "obj-52", "number", "float", 0.0, 5, "obj-48", "number", "float", 0.0, 5, "obj-44", "number", "float", 3.799999952316284, 5, "obj-40", "number", "float", 0.0, 5, "obj-36", "number", "float", 0.9200000166893005, 5, "obj-32", "number", "float", 0.8999999761581421, 5, "obj-28", "number", "float", 3.8499999046325684, 5, "obj-24", "number", "float", 3.8499999046325684 ]
+                            "data": [ 5, "obj-24", "number", "float", 0.22, 5, "obj-28", "number", "float", 1.0, 5, "obj-32", "number", "float", -0.1, 5, "obj-36", "number", "float", 0.02, 5, "obj-40", "number", "float", 0.88, 5, "obj-44", "number", "float", 0.8, 5, "obj-48", "number", "float", 520.0, 5, "obj-52", "number", "float", 700.0, 5, "obj-56", "number", "int", 46, 5, "obj-60", "number", "int", 1, 5, "obj-64", "number", "int", 16, 5, "obj-68", "number", "int", 515 ]
                         },
                         {
                             "number": 25,
-                            "data": [ 5, "obj-24", "number", "float", 1.0, 5, "obj-28", "number", "float", 1.0, 5, "obj-32", "number", "float", 0.0, 5, "obj-36", "number", "float", 0.35, 5, "obj-40", "number", "float", 0.6, 5, "obj-44", "number", "float", 1.0, 5, "obj-48", "number", "float", 260.0, 5, "obj-52", "number", "float", 260.0, 5, "obj-56", "number", "int", 96, 5, "obj-60", "number", "int", 1, 5, "obj-64", "number", "int", 16, 5, "obj-68", "number", "int", 42, 5, "obj-72", "number", "float", 120.0, 5, "obj-76", "number", "float", 0.0 ]
+                            "data": [ 5, "obj-68", "number", "int", 42, 5, "obj-64", "number", "int", 16, 5, "obj-60", "number", "int", 1, 5, "obj-56", "number", "int", 96, 5, "obj-52", "number", "float", 260.0, 5, "obj-48", "number", "float", 260.0, 5, "obj-44", "number", "float", 1.0, 5, "obj-40", "number", "float", 0.6000000238418579, 5, "obj-36", "number", "float", 0.3499999940395355, 5, "obj-32", "number", "float", 0.0, 5, "obj-28", "number", "float", 1.0, 5, "obj-24", "number", "float", 1.0 ]
                         }
                     ]
                 }
@@ -269,7 +257,7 @@
                     "numinlets": 1,
                     "numoutlets": 0,
                     "patching_rect": [ 590.0, 188.0, 320.0, 20.0 ],
-                    "text": "Entropy: 1 Low  2 Gentle  3 Drift  4 Flow"
+                    "text": "1 Stable   2 Consonant   3 Tense Dense"
                 }
             },
             {
@@ -279,7 +267,7 @@
                     "numinlets": 1,
                     "numoutlets": 0,
                     "patching_rect": [ 590.0, 208.0, 320.0, 20.0 ],
-                    "text": "5 Critical  6 Turbulent  7 Saturated  8 Overload"
+                    "text": "4 Chaotic Wide   5 Glass Sparse"
                 }
             },
             {
@@ -803,8 +791,8 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 300.0, 610.0, 83.0, 22.0 ],
-                    "text": "loadmess 101"
+                    "patching_rect": [ 300.0, 610.0, 85.0, 22.0 ],
+                    "text": "loadmess 42"
                 }
             },
             {
@@ -862,51 +850,6 @@
                     "patching_rect": [ 390.0, 640.0, 250.0, 22.0 ],
                     "text": "o.pack /param/tempo"
                 }
-            },
-            {
-                "box": {
-                    "id": "obj-75",
-                    "maxclass": "comment",
-                    "numinlets": 1,
-                    "numoutlets": 0,
-                    "patching_rect": [ 30.0, 670.0, 180.0, 20.0 ],
-                    "text": "voice_decorrelation"
-                }
-            },
-            {
-                "box": {
-                    "format": 6,
-                    "id": "obj-76",
-                    "maxclass": "flonum",
-                    "numinlets": 1,
-                    "numoutlets": 2,
-                    "outlettype": [ "", "bang" ],
-                    "parameter_enable": 0,
-                    "patching_rect": [ 220.0, 669.0, 70.0, 22.0 ],
-                    "varname": "voice_decorrelation"
-                }
-            },
-            {
-                "box": {
-                    "id": "obj-77",
-                    "maxclass": "newobj",
-                    "numinlets": 1,
-                    "numoutlets": 1,
-                    "outlettype": [ "" ],
-                    "patching_rect": [ 300.0, 670.0, 85.0, 22.0 ],
-                    "text": "loadmess 0."
-                }
-            },
-            {
-                "box": {
-                    "id": "obj-78",
-                    "maxclass": "newobj",
-                    "numinlets": 1,
-                    "numoutlets": 1,
-                    "outlettype": [ "FullPacket" ],
-                    "patching_rect": [ 390.0, 670.0, 250.0, 22.0 ],
-                    "text": "o.pack /param/voice_decorrelation"
-                }
             }
         ],
         "lines": [
@@ -961,97 +904,90 @@
             {
                 "patchline": {
                     "destination": [ "obj-24", 0 ],
-                    "order": 13,
-                    "source": [ "obj-20", 0 ]
-                }
-            },
-            {
-                "patchline": {
-                    "destination": [ "obj-28", 0 ],
                     "order": 12,
                     "source": [ "obj-20", 0 ]
                 }
             },
             {
                 "patchline": {
-                    "destination": [ "obj-32", 0 ],
+                    "destination": [ "obj-28", 0 ],
                     "order": 11,
                     "source": [ "obj-20", 0 ]
                 }
             },
             {
                 "patchline": {
-                    "destination": [ "obj-36", 0 ],
+                    "destination": [ "obj-32", 0 ],
                     "order": 10,
                     "source": [ "obj-20", 0 ]
                 }
             },
             {
                 "patchline": {
-                    "destination": [ "obj-40", 0 ],
+                    "destination": [ "obj-36", 0 ],
                     "order": 9,
                     "source": [ "obj-20", 0 ]
                 }
             },
             {
                 "patchline": {
-                    "destination": [ "obj-44", 0 ],
+                    "destination": [ "obj-40", 0 ],
                     "order": 8,
                     "source": [ "obj-20", 0 ]
                 }
             },
             {
                 "patchline": {
-                    "destination": [ "obj-48", 0 ],
+                    "destination": [ "obj-44", 0 ],
                     "order": 7,
                     "source": [ "obj-20", 0 ]
                 }
             },
             {
                 "patchline": {
-                    "destination": [ "obj-52", 0 ],
+                    "destination": [ "obj-48", 0 ],
                     "order": 6,
                     "source": [ "obj-20", 0 ]
                 }
             },
             {
                 "patchline": {
-                    "destination": [ "obj-56", 0 ],
+                    "destination": [ "obj-52", 0 ],
                     "order": 5,
                     "source": [ "obj-20", 0 ]
                 }
             },
             {
                 "patchline": {
-                    "destination": [ "obj-60", 0 ],
+                    "destination": [ "obj-56", 0 ],
                     "order": 4,
                     "source": [ "obj-20", 0 ]
                 }
             },
             {
                 "patchline": {
-                    "destination": [ "obj-64", 0 ],
+                    "destination": [ "obj-60", 0 ],
                     "order": 3,
                     "source": [ "obj-20", 0 ]
                 }
             },
             {
                 "patchline": {
-                    "destination": [ "obj-68", 0 ],
+                    "destination": [ "obj-64", 0 ],
                     "order": 2,
                     "source": [ "obj-20", 0 ]
                 }
             },
             {
                 "patchline": {
-                    "destination": [ "obj-72", 0 ],
+                    "destination": [ "obj-68", 0 ],
                     "order": 1,
                     "source": [ "obj-20", 0 ]
                 }
             },
             {
                 "patchline": {
-                    "destination": [ "obj-76", 0 ],
+                    "destination": [ "obj-72", 0 ],
                     "order": 0,
                     "source": [ "obj-20", 0 ]
                 }
@@ -1312,24 +1248,6 @@
                 "patchline": {
                     "destination": [ "obj-2", 0 ],
                     "source": [ "obj-74", 0 ]
-                }
-            },
-            {
-                "patchline": {
-                    "destination": [ "obj-78", 0 ],
-                    "source": [ "obj-76", 0 ]
-                }
-            },
-            {
-                "patchline": {
-                    "destination": [ "obj-76", 0 ],
-                    "source": [ "obj-77", 0 ]
-                }
-            },
-            {
-                "patchline": {
-                    "destination": [ "obj-2", 0 ],
-                    "source": [ "obj-78", 0 ]
                 }
             },
             {

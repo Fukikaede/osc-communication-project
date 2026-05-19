@@ -5,20 +5,22 @@
 ```text
 Max patch (OSC_param_control.maxpat)
   ├─ Parameter UI: number/flonum -> o.pack /param/*
-  ├─ Pull loop    : qmetro -> counter -> o.pack /pull
+  ├─ Manual pull  : button -> counter -> o.pack /pull
+  ├─ Presets      : stages 1-8 raise complexity and tempo together
   ├─ Network Out  : udpsend 127.0.0.1:8001
   └─ Network In   : udpreceive 8000 -> o.route ... -> print
 
 Max patch (OSC_communication.maxpat)
   ├─ Playback/visualization
-  ├─ route /grid /rgrid /seq /seq_low /seq_mid /seq_high /pdf /rpdf /pdf_low /pdf_high /stat /ack
-  └─ audio chain (cycle~/line~/gain~/ezdac~)
+  ├─ route /grid /rgrid /seq /seq_low /seq_mid /seq_high /pdf /rpdf /pdf_low /pdf_high /stat /ack /tempo /chord
+  ├─ main audio chain (freq -> pipe -> cycle~ -> gain~ -> ezdac~)
+  └─ MIDI chord chain (/chord -> ftom -> makenote -> noteout, ch 4)
 
 Python server (entropy_lattice_server.py)
   ├─ OSC In  : /hello, /pull, /grid_now, /param/*
   ├─ State   : independent parameter store + last indices
   ├─ Sampler : rhythm lattice + pitch lattice + harmony constraints
-  └─ OSC Out : /ack, /grid, /rgrid, /seq*, /pdf*, /stat
+  └─ OSC Out : /ack, /grid, /rgrid, /seq*, /pdf*, /stat, /tempo, /chord
 ```
 
 ## 2. Control Model
@@ -39,15 +41,19 @@ Python server (entropy_lattice_server.py)
 - `send_pdf`
 - `max_events_per_bar`
 - `seed_base`
+- `tempo`
+- `voice_decorrelation`
 
 ## 3. Data Flow (Per Pull)
 
 1. Max 發送 `/pull bar_id beats_per_bar`。
 2. Python 讀取當前參數（不經 entropy 映射）。
-3. 生成 low -> mid -> high 三聲部事件。
-4. Python 回傳 `/seq_low /seq_mid /seq_high` 與相容 `/seq`。
+3. 生成 low -> mid -> high 三聲部事件；`sigma_rhythm` 與 `rhythm_disrupt_max` 控制節奏型選擇。`voice_decorrelation` 預設為 `0.0`，保留舊版小節內平均骨架；提高到 `1.0` 時才增加聲部錯位、休符、gate 變化與輕微 velocity 差異。
+4. Python 回傳 `/seq_low /seq_mid /seq_high` 與相容 `/seq`，驅動 Max 端連續 `cycle~` 三聲部。
 5. 視 `send_pdf` 決定是否回傳 `/pdf*`。
 6. 回傳 `/stat`（H, sigma, rho）。
+7. Max 發送 `/param/tempo` 時，Python clamp 後回傳 `/tempo` 供 Max `transport` 更新 BPM。
+8. Python 另外回傳 `/chord`，Max 每小節一次輸出 MIDI 柱式和音作為伴奏。
 
 ## 4. ODOT Usage Notes
 
@@ -58,7 +64,7 @@ Python server (entropy_lattice_server.py)
 ## 5. Compatibility
 
 - 保留 `/seq`（mid 的相容輸出）避免舊鏈路中斷。
-- 舊輸入路由 `/entropy`, `/tempo`, `/mode`, `/rho`（獨立）已移除。
+- 舊輸入路由 `/entropy`, `/tempo`, `/mode`, `/rho`（獨立）已移除；tempo 改由 `/param/tempo` 管理。
 
 ## 6. Testing
 
