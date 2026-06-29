@@ -20,8 +20,11 @@ class CaptureClient:
 class ParamTests(unittest.TestCase):
     def setUp(self):
         self.old_client = mod.client
+        self.old_m4l_client = mod.m4l_client
         self.capture_client = CaptureClient()
+        self.capture_m4l_client = CaptureClient()
         mod.client = self.capture_client
+        mod.m4l_client = self.capture_m4l_client
 
         with mod.state.lock:
             self.old_params = dict(mod.state.params)
@@ -40,6 +43,7 @@ class ParamTests(unittest.TestCase):
             mod.state.last_rgrid = self.old_last_rgrid
             mod.state.engine._reseed_rngs(int(mod.state.params["seed_base"]))
         mod.client = self.old_client
+        mod.m4l_client = self.old_m4l_client
 
     def test_clamp_float(self):
         self.assertEqual(mod.clamp_param("sigma_pitch", -1.0), 0.05)
@@ -66,6 +70,7 @@ class ParamTests(unittest.TestCase):
         self.assertNotIn('disp.map("/mode"', text)
         self.assertNotIn('disp.map("/rho"', text)
         self.assertIn('disp.map("/param/*"', text)
+        self.assertIn('disp.map("/macro/*"', text)
 
     def test_on_param_unknown(self):
         mod.on_param("/param/not_exist", 1)
@@ -86,6 +91,48 @@ class ParamTests(unittest.TestCase):
         self.assertIn(("/tempo", 300.0), self.capture_client.messages)
         self.assertIn(("/ack", "param:tempo=300.0"), self.capture_client.messages)
 
+    def test_complexity_macro_clamps_and_expands_params(self):
+        c_low, low = mod.complexity_to_params(-1)
+        c_high, high = mod.complexity_to_params(2)
+
+        self.assertEqual(c_low, 0.0)
+        self.assertEqual(c_high, 1.0)
+        self.assertEqual(low["sigma_pitch"], 0.18)
+        self.assertEqual(low["voice_decorrelation"], 0.0)
+        self.assertEqual(high["rhythm_disrupt_max"], 0.86)
+        self.assertEqual(high["voice_decorrelation"], 0.65)
+        self.assertNotIn("rho", high)
+        self.assertNotIn("seed_base", high)
+
+    def test_on_macro_complexity_applies_bundle_and_forwards_tempo(self):
+        mod.apply_param("rho", 0.77)
+
+        mod.on_macro("/macro/complexity", 0.8)
+
+        self.assertEqual(mod.state.params["sigma_pitch"], 1.75)
+        self.assertEqual(mod.state.params["sigma_rhythm"], 1.7)
+        self.assertEqual(mod.state.params["rhythm_disrupt_max"], 0.46)
+        self.assertEqual(mod.state.params["voice_decorrelation"], 0.18)
+        self.assertEqual(mod.state.params["rho"], 0.77)
+        self.assertIn(("/tempo", 158.0), self.capture_client.messages)
+        self.assertIn(("/macro_state/complexity", 0.8), self.capture_client.messages)
+        self.assertIn(("/param_state/sigma_pitch", 1.75), self.capture_client.messages)
+        self.assertIn(("/param_state/voice_decorrelation", 0.18), self.capture_client.messages)
+        self.assertIn(("/ack", "macro:complexity=0.800"), self.capture_client.messages)
+
+    def test_on_macro_rejects_missing_or_unknown(self):
+        mod.on_macro("/macro/complexity")
+        mod.on_macro("/macro/unknown", 0.5)
+
+        self.assertIn(("/ack", "macro_error:missing_value"), self.capture_client.messages)
+        self.assertIn(("/ack", "macro_error:unknown:unknown"), self.capture_client.messages)
+
+    def test_on_hello_sends_m4l_status_probe(self):
+        mod.on_hello("/hello")
+
+        self.assertIn(("/ack", "hello"), self.capture_client.messages)
+        self.assertIn(("/m4l_status", "hello"), self.capture_m4l_client.messages)
+
     def test_on_pull_send_pdf_toggle(self):
         mod.apply_param("seed_base", 1234)
         mod.apply_param("send_pdf", 0)
@@ -101,6 +148,27 @@ class ParamTests(unittest.TestCase):
             any(msg == ("/ack", "pull_error:TypeError") for msg in self.capture_client.messages),
             "on_pull should not raise and emit pull_error ACK",
         )
+
+    def test_on_pull_mirrors_all_voice_sequences_to_m4l_port(self):
+        mod.apply_param("seed_base", 42)
+        mod.apply_param("send_pdf", 0)
+        mod.on_pull("/pull", 2, 4)
+
+        for route in ("/seq_low", "/seq_mid", "/seq_high"):
+            self.assertIn((route, self._message_payload(route)), self.capture_m4l_client.messages)
+
+    def test_on_pull_sends_pad_payload_to_m4l_port(self):
+        mod.apply_param("seed_base", 42)
+        mod.apply_param("send_pdf", 0)
+        mod.apply_param("vel", 100)
+        mod.on_pull("/pull", 3, 4)
+
+        pad_payload = self._m4l_message_payload("/pad")
+        low_events = self._sequence_events(self._message_payload("/seq_low"))
+        self.assertEqual(pad_payload[0], 3)
+        self.assertEqual(pad_payload[1], low_events[0][3])
+        self.assertEqual(pad_payload[2], 4.0)
+        self.assertEqual(pad_payload[3], 65)
 
     def test_on_pull_missing_args(self):
         mod.on_pull("/pull", 7)
@@ -232,6 +300,12 @@ class ParamTests(unittest.TestCase):
             if addr == route:
                 return payload
         self.fail(f"missing OSC route {route}")
+
+    def _m4l_message_payload(self, route):
+        for addr, payload in self.capture_m4l_client.messages:
+            if addr == route:
+                return payload
+        self.fail(f"missing M4L OSC route {route}")
 
     def _sequence_events(self, payload):
         return [payload[i : i + 6] for i in range(1, len(payload), 6)]

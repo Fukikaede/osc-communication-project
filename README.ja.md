@@ -1,7 +1,7 @@
 # OSC Communication Project (Max + Python) 日本語版
 
 このプロジェクトは、Max と Python を使ったリアルタイム OSC 音楽生成システムです。  
-現在は「全パラメータ独立制御」方式で動作し、`entropy` による一括制御は使いません。
+現在は「全パラメータ独立制御」を基本にしつつ、必要な時だけ `/macro/complexity` で複数パラメータをまとめて動かせます。
 
 ## 構成
 
@@ -27,7 +27,9 @@ osc-communication-project/
 - `max/OSC_communication.maxpat`
   - 再生・可視化用パッチ（grid / pdf / stat / 連続 `cycle~` 3 声部 / MIDI 和音）
 - `max/OSC_param_control.maxpat`
-  - ODOT ベースのパラメータ操作パッチ（`o.pack /param/*`, `o.pack /pull`）。Preset 1-8 は低エントロピーから高エントロピーへ進む段階設計で、複雑度と tempo が一緒に上がります。
+  - ODOT ベースのパラメータ操作パッチ（`o.pack /param/*`, `o.pack /macro/complexity`, `o.pack /pull`）。Preset 1-12 は性格別 scene 設計で、前半は安定した骨格を保ち、後半で rhythm disrupt と voice decorrelation を段階的に増やします。
+- `max/m4l/OSC_MIDI_Recorder.maxpat`
+  - Max for Live 用の MIDI 記録パッチ（`/seq_low /seq_mid /seq_high /pad` を声部別 Session clip に保存し、採用 take を Arrangement にコピー）
 - `src/entropy_lattice_server.py`
   - Python 側 OSC サーバーと 3 声部生成エンジン
 
@@ -35,6 +37,7 @@ osc-communication-project/
 
 - Python -> Max: `127.0.0.1:8000`
 - Max -> Python: `127.0.0.1:8001`
+- Python -> Max for Live MIDI recorder: `127.0.0.1:8002`
 
 ## OSC API
 
@@ -57,6 +60,7 @@ osc-communication-project/
 - `/param/seed_base <int>`
 - `/param/tempo <float BPM>`
 - `/param/voice_decorrelation <float 0..1>`
+- `/macro/complexity <float 0..1>`（音楽的複雑度の総合 macro。`rho`, `vel`, `seed_base`, `send_pdf`, `max_events_per_bar` は変更しません）
 
 削除済み旧ルート：`/entropy`, `/tempo`, `/mode`, `/rho`（旧単独ルート）。BPM は `/param/tempo` で指定します。
 
@@ -73,6 +77,7 @@ osc-communication-project/
 - `/stat <H sigma rho>`
 - `/tempo <float BPM>`（Max の `transport` 更新用）
 - `/chord <bar low_freq mid_freq high_freq dur_ms vel>`（1 小節 1 回の MIDI 和音）
+- `/macro_state/complexity <float>`、`/param_state/<name> <value>`（`OSC_param_control.maxpat` の表示同期用）
 
 イベント 1 件の形式：`beat, i, j, freq_hz, dur_beat, vel`
 
@@ -106,6 +111,7 @@ python src/entropy_lattice_server.py
 
 - `/hello` と `/grid_now` を送信
 - `qmetro` を ON にして `/pull` を周期送信
+- `macro_complexity` で全体の複雑度をまとめて調整
 - 各 `o.pack /param/*` で音響パラメータを調整
 
 ## テスト
@@ -118,7 +124,10 @@ python3 -m unittest tests/test_server_params.py
 
 - `OSC_communication.maxpat` の route は以下に統一済みです。  
   `route /grid /rgrid /seq /seq_low /seq_mid /seq_high /pdf /rpdf /pdf_low /pdf_high /stat /ack /tempo /chord`
+- Max for Live で MIDI clip に記録し、Session から Arrangement に commit する手順は `docs/m4l_midi_recorder.md` を参照してください。
 - `send_pdf=0` の場合、Python は pdf 系ルートを送信しません。
 - `/pull` の引数不足・型不正は `/ack pull_error:...` として返します。
 - `/param/tempo` は Python 側で clamp した後、Max 側へ `/tempo` として転送されます。
+- `/macro/complexity` は Python 側で 0..1 に clamp し、既存の個別パラメータへ展開します。展開後も `/param/*` で個別に上書きできます。
+- macro 展開後、Python は `/param_state/*` を返し、`OSC_param_control.maxpat` は `set $1` で UI 表示だけを更新します。
 - システム概要は `docs/architecture.md`、ワーク紹介は `docs/work_intro_ja.md` を参照してください。
