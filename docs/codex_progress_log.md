@@ -2,12 +2,13 @@
 
 本文用于在重新开启 Codex 对话时快速恢复工程上下文。它不是逐字对话转录，而是依据本机可读取的 Codex 会话记录、Git 历史和当前工程文件整理出的阶段摘要。
 
-## 当前交接点：2026-05-25
+## 当前交接点：2026-07-15
 
 - 工程路径：`/Users/kaede/Codex/osc-communication-project`
-- Git 同步基准：`bdb41b2 chore: sync current OSC project progress`，已于 2026-05-19 推送到 `origin/main`。
-- 当前工作树在该提交之后还有未提交内容：复杂度宏控制、12 个 preset、M4L MIDI 记录器、格子/熵曲面可视化，以及 Ableton Live 工程文件。
-- 2026-05-25 验证结果：`tests/test_server_params.py` 通过 25 项测试；Python 编译检查、Max patch JSON 检查、JavaScript 语法检查与 `git diff --check` 均通过。
+- 上一个 Git 同步基准：`f8877d3 chore: backup OSC and M4L progress`，已于 2026-06-29 推送到 `origin/main`。
+- 2026-07-15 同步范围：更新后的 Ableton Live 主工程、两个较新的 Live 自动备份，以及本文和 README 中的进度说明。两个已被 Live 备份轮换淘汰的 2026-05-20 早期备份随本次同步移除。
+- 当前 Ableton 主工程已从上一提交约 199 KB 增长到约 302 KB。工程中保留 `EEG_M4L_Generator`、`Seq_High / Seq_Mid / Seq_Low / Pad` 主结构，并继续加入多组序列分层与 Drift、Electric、Grand Piano、Pizzicato、Staccato、Legato 等音色或演奏层。
+- 2026-07-15 验证结果：`tests/test_server_params.py` 通过 25 项测试；Python 编译检查、3 个 Max patch JSON 检查、2 个 JavaScript 语法检查与 `git diff --check` 均通过。
 
 ## 当前系统状态
 
@@ -26,6 +27,12 @@
 现有参数中，`max_events_per_bar` 主要是输出上限，不是实际的音符密度控制。现有节奏模式通常仍围绕每声部每小节约四个事件运行，`voice_decorrelation` 还能删除事件而不能增加事件。
 
 下一项优先实现候选是加入真正的 `note_density` 或等价机制，使复杂度宏能够增加每小节事件数，同时保留当前连续三声部的可听性和 M4L 记录能力。
+
+## 当前阶段判断
+
+- OSC、Python、Max、M4L 记录和可视化的技术主干已经形成，并有自动测试与阶段备份保护。
+- 当前制作重点已从基础通信与发声，转入 Ableton 内的编曲、音色分层、演奏法配置和生成结果筛选。
+- 下一轮代码开发的首要目标仍是“真实事件密度”，避免 complexity 主要只表现为音高变怪、tempo 加快或声部事件被删减。
 
 ## 对话与实施时间线
 
@@ -70,6 +77,17 @@
 - 用户要求查看工程和 Codex 对话，确认进度，建立阶段性备份，并写一份便于下次开启对话时续接的简明文档。
 - Codex 核对了本机项目相关会话、Git 历史、当前未提交文件和验证状态，并新增本文。
 
+### 2026-06-29：OSC、M4L 与 Live 工程集中备份
+
+- 将复杂度宏、12 个 preset、M4L MIDI 记录器、熵曲面可视化和当时的 Ableton Live 工程集中提交。
+- Git 基准更新为 `f8877d3`，并同步到远端 `main`。
+
+### 2026-06-29 至 2026-07-15：Ableton 编曲与音色分层
+
+- Python、Max 和 M4L 源码保持稳定，工作主要发生在 `EEG Music system.als`。
+- Live 工程继续扩展声部分层和乐器/演奏法配置，主工程体积由约 199 KB 增长到约 302 KB。
+- 新增名为 `2026-06-29 223948` 与 `2026-07-14 152918` 的阶段备份；Live 的备份轮换同时移除了两个最早的 2026-05-20 备份。
+
 ## 重要文件
 
 - `src/entropy_lattice_server.py`：OSC 服务器、声部事件、复杂度宏、M4L 镜像发送。
@@ -83,12 +101,13 @@
 
 ## 版本与备份参考
 
-- 远端 Git 基准：`bdb41b2`，包含恢复连续主声音、tempo/调度修正和 `max/backup_max/` 中的备份文件。
+- 上一远端 Git 基准：`f8877d3`，包含复杂度宏、12 个 preset、M4L 记录器、可视化、Ableton Live 工程和此前的阶段备份。
 - 本机 Codex 会话记录位于 `~/.codex/sessions/`；其中与本项目主线直接相关的记录始于 2026-02-16、2026-03-09、2026-04-07、2026-05-11、2026-05-19 与 2026-05-20。
 - 2026-05-25 阶段快照：`/Users/kaede/Codex/project_stage_backups/osc-communication-project_stage_20260525_before_note_density.tar.gz`。该快照包含本次文档、当前未提交工程文件、M4L/可视化文件及 Ableton Live 工程；不包含 `.git` 元数据和 Python 缓存。
+- Ableton Live 工程目录内保留多个按日期命名的 `.als` 自动备份；本次同步包含较新的 `2026-06-29 223948` 与 `2026-07-14 152918`。
 
 ## 下次开启会话时
 
-1. 先阅读本文并运行 `git status --short --branch`，确认快照之后是否又有修改。
+1. 先阅读本文并运行 `git status --short --branch`，确认本次同步之后是否又有修改。
 2. 若继续声音生成研究，优先讨论或实现可由复杂度控制的实际音符密度，而不是继续只提高 tempo 或扩大音高偏移。
 3. 若开始新的大范围声音或 Ableton 工作流修改，先制作新的阶段快照，或将已确认状态提交到 Git。
