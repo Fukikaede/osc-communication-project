@@ -9,14 +9,22 @@ osc-communication-project/
 ├─ README.md
 ├─ requirements.txt
 ├─ docs/
-│  └─ architecture.md
+│  ├─ architecture.md
+│  ├─ codex_progress_log.md
+│  └─ m4l_midi_recorder.md
 ├─ src/
 │  └─ entropy_lattice_server.py
 ├─ tests/
 │  └─ test_server_params.py
-└─ max/
-   ├─ OSC_communication.maxpat
-   └─ OSC_param_control.maxpat
+├─ max/
+│  ├─ OSC_communication.maxpat
+│  ├─ OSC_param_control.maxpat
+│  ├─ lattice_visualizer.js
+│  └─ m4l/
+│     ├─ OSC_MIDI_Recorder.maxpat
+│     └─ osc_midi_recorder.js
+└─ EEG Music system Project/
+   └─ EEG Music system.als
 ```
 
 ## 主要コンポーネント
